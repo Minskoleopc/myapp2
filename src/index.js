@@ -6,7 +6,7 @@ import ReactDOM from "react-dom/client";
 // cd my-app
 // npm start
 
-
+console.log('day2')
 
 function App() {
     return (
