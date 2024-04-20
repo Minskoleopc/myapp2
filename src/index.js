@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-//import "./index.css";
+import "./index.css";
 
 // npx create-react-app my-app
 // cd my-app
@@ -10,7 +10,7 @@ console.log('day2')
 
 function App() {
     return (
-        <div>
+        <div className="container">
             <Header />
             <Menu/>
             <Footer />
@@ -54,7 +54,13 @@ function Footer() {
 
 
 function Header() {
-    return <h1>Welcome to the pizza club</h1>
+    //const style = {color:"red"}
+    let style = {}
+    return (
+        <header className="header">
+            <h1 style={style}>Fast React Pizza Co</h1>
+        </header>
+    )
 }
 
 
