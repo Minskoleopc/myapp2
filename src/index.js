@@ -6,6 +6,54 @@ import "./index.css";
 // cd my-app
 // npm start
 
+const pizzaData = [
+    {
+      name: "Focaccia",
+      ingredients: "Bread with italian olive oil and rosemary",
+      price: 6,
+      photoName: "pizzas/focaccia.jpg",
+      soldOut: false,
+    },
+    {
+      name: "Pizza Margherita",
+      ingredients: "Tomato and mozarella",
+      price: 10,
+      photoName: "pizzas/margherita.jpg",
+      soldOut: false,
+    },
+    {
+      name: "Pizza Spinaci",
+      ingredients: "Tomato, mozarella, spinach, and ricotta cheese",
+      price: 12,
+      photoName: "pizzas/spinaci.jpg",
+      soldOut: false,
+    },
+    {
+      name: "Pizza Funghi",
+      ingredients: "Tomato, mozarella, mushrooms, and onion",
+      price: 12,
+      photoName: "pizzas/funghi.jpg",
+      soldOut: false,
+    },
+    {
+      name: "Pizza Salamino",
+      ingredients: "Tomato, mozarella, and pepperoni",
+      price: 15,
+      photoName: "pizzas/salamino.jpg",
+      soldOut: true,
+    },
+    {
+      name: "Pizza Prosciutto",
+      ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese",
+      price: 18,
+      photoName: "pizzas/prosciutto.jpg",
+      soldOut: false,
+    },
+  ];
+
+
+
+
 console.log('day2')
 
 function App() {
@@ -21,26 +69,43 @@ function App() {
 // Part 3
 
 function Menu() {
+
+
+    const pizzas =  pizzaData;
+    const numPizza = pizzas.length
+
     return (
-        <div>
-            <Pizza />
-            <Pizza />
-            <Pizza />
-        </div>
+        // actual component  : list rendering
+        <main className="menu">
+            <ul>    
+                {
+                  pizzas.map((pizza)=>(
+                    <Pizza pizzaObj = {pizza}/>
+                  ))  
+                }
+            </ul>
+        </main>
+
+        // <div>
+        //     {/* <Pizza name = "Pizza Prosciutto" ingredients = "Tomato, mozarella, ham, aragula, and burrata cheese" price = "18" /> */}
+        //     {/* <Pizza />
+        //     <Pizza />
+        //     <Pizza /> */}
+        // </div>
     )
 }
-
-
 // part 1  
 // Defining a component 
 // Data (states and props) Logic Appearance 
-function Pizza() {
+function Pizza(props) {
     return (
-        <div>
-            <img src="pizzas/funghi.jpg" alt="funghi-pizza" />
-            <h2>Pizza funghi</h2>
-            <p>Tomato Spinach and cheese</p>
-        </div>
+       <li>
+            <h1>{props.pizzaObj.name}</h1>
+            <p>{props.pizzaObj.ingredients}</p>
+            <p>{props.pizzaObj.price}</p>
+            <p>{props.pizzaObj.soldOut}</p>
+            <img src={props.pizzaObj.photoName}></img>
+       </li>
     );
 }
 
@@ -49,7 +114,7 @@ function Footer() {
     // how it works behind the scence - 'JSX'
     // return React.createElement("footer",null,"burger bar 2019-2020")
     // how to include javascript in jsx
-    const hour = new Date().getHours()+5
+    const hour = new Date().getHours()
     const openHour = 12;
     const closeHour = 22;
     const isOpen = hour >= openHour && hour <= closeHour;
@@ -67,15 +132,13 @@ function Footer() {
 
     }
 
-
-
     return (
         <footer className="footer">
             {
                 isOpen ? (
                     <Order closeHour={closeHour} openHour={openHour} />
                 ) : (
-                    <p>We are happy to welcome you between our open hr{openHour}:00 and {closeHour}:00</p>
+                    <p>We are happy to welcome you between our open hr {openHour}:00 and {closeHour}:00</p>
                 )
             }
         </footer>
